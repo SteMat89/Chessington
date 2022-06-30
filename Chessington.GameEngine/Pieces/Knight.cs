@@ -17,6 +17,9 @@ namespace Chessington.GameEngine.Pieces
 
             for (int i = 0; i < 8; i++)
             {
+                if(board.FindPiece(this).Row + row[i] >= 0 && board.FindPiece(this).Row + row[i] < 8 
+                                                           && board.FindPiece(this).Col + col[i] >=0 
+                                                           && board.FindPiece(this).Col + col[i] < 8)
                 availableMoves.Add(new Square(board.FindPiece(this).Row + row[i], 
                     board.FindPiece(this).Col + col[i]));
             }
