@@ -20,11 +20,27 @@ namespace Chessington.GameEngine.Pieces
                 { 
                     availableMoves.Add(new Square(board.FindPiece(this).Row - 2, board.FindPiece(this).Col));
                 }
-
-                if (board.FindPiece(this).Row > 0  && 
-                    board.GetPiece(new Square(board.FindPiece(this).Row - 1, board.FindPiece(this).Col)) == null)
+                if (board.FindPiece(this).Row > 0)
                 {
-                    availableMoves.Add(new Square(board.FindPiece(this).Row - 1, board.FindPiece(this).Col));
+                    if (board.GetPiece(new Square(board.FindPiece(this).Row - 1, board.FindPiece(this).Col)) == null)
+                    {
+                        availableMoves.Add(new Square(board.FindPiece(this).Row - 1, board.FindPiece(this).Col));
+                    }
+ 
+                    if (board.FindPiece(this).Col + 1 < 7 && 
+                        board.GetPiece(new Square(board.FindPiece(this).Row - 1, board.FindPiece(this).Col + 1)) != null 
+                        &&  board.GetPiece(new Square(board.FindPiece(this).Row - 1, 
+                            board.FindPiece(this).Col + 1)).Player != this.Player)
+                    {
+                        availableMoves.Add(new Square(board.FindPiece(this).Row - 1, board.FindPiece(this).Col + 1));
+                    }
+                    if (board.FindPiece(this).Col - 1 > 0 &&
+                        board.GetPiece(new Square(board.FindPiece(this).Row - 1, board.FindPiece(this).Col - 1)) != null 
+                        &&  board.GetPiece(new Square(board.FindPiece(this).Row - 1, 
+                            board.FindPiece(this).Col - 1)).Player != this.Player)
+                    {
+                        availableMoves.Add(new Square(board.FindPiece(this).Row - 1, board.FindPiece(this).Col - 1));
+                    }
                 }
             }
             else if (this.Player == Player.Black )
@@ -36,10 +52,27 @@ namespace Chessington.GameEngine.Pieces
                     availableMoves.Add(new Square(board.FindPiece(this).Row + 2, board.FindPiece(this).Col));
                 }
 
-                if (board.FindPiece(this).Row < 7 
-                    && board.GetPiece(new Square(board.FindPiece(this).Row + 1, board.FindPiece(this).Col)) == null)
+                if (board.FindPiece(this).Row < 7)
                 {
-                    availableMoves.Add(new Square(board.FindPiece(this).Row + 1, board.FindPiece(this).Col));
+                    if(board.GetPiece(new Square(board.FindPiece(this).Row + 1, board.FindPiece(this).Col)) == null)
+                    {
+                        availableMoves.Add(new Square(board.FindPiece(this).Row + 1, board.FindPiece(this).Col));
+                    }
+                    if (board.FindPiece(this).Col + 1 < 7 && 
+                        board.GetPiece(new Square(board.FindPiece(this).Row + 1, board.FindPiece(this).Col + 1)) != null 
+                        &&  board.GetPiece(new Square(board.FindPiece(this).Row + 1, 
+                            board.FindPiece(this).Col + 1)).Player != this.Player)
+                    {
+                        availableMoves.Add(new Square(board.FindPiece(this).Row + 1, board.FindPiece(this).Col + 1));
+                    }
+                    if (board.FindPiece(this).Col - 1 > 0 &&
+                        board.GetPiece(new Square(board.FindPiece(this).Row + 1, board.FindPiece(this).Col - 1)) != null 
+                        &&  board.GetPiece(new Square(board.FindPiece(this).Row + 1, 
+                            board.FindPiece(this).Col - 1)).Player != this.Player)
+                    {
+                        availableMoves.Add(new Square(board.FindPiece(this).Row + 1, board.FindPiece(this).Col - 1));
+                    }
+                    
                 }
             }
             return availableMoves;
