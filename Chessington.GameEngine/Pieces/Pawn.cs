@@ -14,10 +14,19 @@ namespace Chessington.GameEngine.Pieces
             
             if (this.Player == Player.White)
             {
+                if (board.FindPiece(this).Row == 7)
+                { 
+                    availableMoves.Add(new Square(board.FindPiece(this).Row - 2, board.FindPiece(this).Col));
+                }
                 availableMoves.Add(new Square(board.FindPiece(this).Row - 1, board.FindPiece(this).Col));
             }
             else if (this.Player == Player.Black)
             {
+                if (board.FindPiece(this).Row == 1)
+                {
+                    
+                    availableMoves.Add(new Square(board.FindPiece(this).Row + 2, board.FindPiece(this).Col));
+                }
                 availableMoves.Add(new Square(board.FindPiece(this).Row + 1, board.FindPiece(this).Col));
             }
             return availableMoves;
