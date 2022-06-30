@@ -12,22 +12,26 @@ namespace Chessington.GameEngine.Pieces
         {
             List<Square> availableMoves = new List<Square>();
 
-            for (int i = board.FindPiece(this).Col + 1; i < 8; i++)
+            for (int i = board.FindPiece(this).Col + 1; 
+                 i < 8 && board.GetPiece(new Square(board.FindPiece(this).Row, i)) == null; i++)
             {
                 availableMoves.Add(new Square(board.FindPiece(this).Row, i));
             }
             
-            for (int i = board.FindPiece(this).Col - 1; i >= 0; i--)
+            for (int i = board.FindPiece(this).Col - 1;
+                 i >= 0 && board.GetPiece(new Square(board.FindPiece(this).Row, i)) == null; i--)
             {
                 availableMoves.Add(new Square(board.FindPiece(this).Row, i));
             }
             
-            for (int i = board.FindPiece(this).Row + 1; i < 8; i++)
+            for (int i = board.FindPiece(this).Row + 1;
+                 i < 8 && board.GetPiece(new Square(board.FindPiece(this).Row, i)) == null; i++)
             {
                 availableMoves.Add(new Square(i, board.FindPiece(this).Col));
             }
             
-            for (int i = board.FindPiece(this).Row - 1; i >= 0; i--)
+            for (int i = board.FindPiece(this).Row - 1;
+                 i >= 0 && board.GetPiece(new Square(board.FindPiece(this).Row, i)) == null; i--)
             {
                 availableMoves.Add(new Square(i, board.FindPiece(this).Col));
             }
