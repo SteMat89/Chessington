@@ -64,6 +64,35 @@ namespace Chessington.GameEngine
             CurrentPlayer = movingPiece.Player == Player.White ? Player.Black : Player.White;
             OnCurrentPlayerChanged(CurrentPlayer);
         }
+
+        public bool isSquareInBounds(Square square)
+        {
+            return square.Row >= 0 && square.Col < 8 && square.Row < 8 && square.Col >= 0;
+        }
+
+        public bool IsSquareEmpty(Square square)
+        {
+            if (this.GetPiece(square) == null)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        public bool IsSquareEnemy(Square square, Piece piece)
+        {
+            if (this.GetPiece(square).Player != piece.Player)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
         
         public delegate void PieceCapturedEventHandler(Piece piece);
         
